@@ -32,7 +32,7 @@ static std::vector<Data> read_iris_data()
 		{
 			if (index == d.size)
 			{
-				d.cls = segment;
+				d.clazz = segment;
 				break;
 			}
 
@@ -61,42 +61,6 @@ static std::pair<std::vector<Data>, std::vector<Data>> split_data(std::vector<Da
 		index++;
 	}
 	return std::make_pair(training, test);
-}
-
-static void normalize(std::vector<Data> data)
-{
-	double max = std::numeric_limits<double>::max();
-	double min = std::numeric_limits<double>::min();
-	double *mins = new double[data[0].size];
-	double *maxes = new double[data[0].size];
-	std::fill_n(mins, data[0].size, max);
-	std::fill_n(maxes, data[0].size, min);
-
-	for (auto row : data) {
-		for (size_t i = 0; i < row.size; i++) {
-			if (row.fields[i] > maxes[i])
-				maxes[i] = row.fields[i];
-			if (row.fields[i] < mins[i])
-				mins[i] = row.fields[i];
-		}
-	}
-	for (auto row : data) {
-		for (size_t i = 0; i < row.size; i++) {
-			row.fields[i] = (row.fields[i] - mins[i]) / (maxes[i] - mins[i]);
-		}
-	}
-}
-
-static void printData(const std::vector<Data> data)
-{
-	for (auto d : data)
-	{
-		for (size_t i = 0; i < d.size; i++)
-		{
-			std::cout << d.fields[i] << " ";
-		}
-		std::cout << std::endl;
-	}
 }
 
 #endif

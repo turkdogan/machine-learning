@@ -1,6 +1,7 @@
 #include "knn.h"
 #include <map>
 #include <iostream>
+#include "../common/ml_data.util.h"
 
 std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 {
@@ -9,7 +10,7 @@ std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 	std::fill_n(top_k_indexes, k, -1);
 	for (size_t index = 0; index < data_list.size(); index++)
 	{
-		double distance = d.distance(data_list[index]);
+		double distance = ::distance(d, data_list[index]);
 		size_t ind = 0;
 		while (ind < k && top_k_indexes[ind] != -1 && top_k_distances[ind] < distance)
 		{
@@ -40,7 +41,7 @@ std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 	std::map<std::string, int> top_k_class_map;
 	while (index < k && top_k_indexes[index] != -1)
 	{
-		top_k_class_map[data_list[top_k_indexes[index]].cls]++;
+		top_k_class_map[data_list[top_k_indexes[index]].clazz]++;
 		index++;
 	}
 	int max = -1;
@@ -56,3 +57,4 @@ std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 	return maxClass;
 }
 
+	

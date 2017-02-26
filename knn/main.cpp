@@ -1,10 +1,9 @@
 #include "knn.h"
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <ctime>
 
 #include "../io/iris_reader.h"
+#include "../common/ml_data.util.h"
 
 void run_knn(std::vector<Data> test, std::vector<Data> training, size_t k)
 {
@@ -13,7 +12,7 @@ void run_knn(std::vector<Data> test, std::vector<Data> training, size_t k)
 	for (auto test_data : test)
 	{
 		std::string maxClass = knn.getNeighbours(test_data, training, k);
-		if (maxClass.compare(test_data.cls) == 0)
+		if (maxClass.compare(test_data.clazz) == 0)
 		{
 			correct++;
 		}
@@ -31,7 +30,6 @@ int main(int argc, char **argv)
 {
 	std::srand(time(NULL));
 	auto dataset = read_iris_data();
-	printData(dataset);
 	normalize(dataset);
 	std::random_shuffle(dataset.begin(), dataset.end());
 	auto splitted_data = split_data(dataset);
