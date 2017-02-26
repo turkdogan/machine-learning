@@ -28,7 +28,6 @@ std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 			top_k_distances[ind] = distance;
 		}
 	}
-	/*
 	if (std::rand() % 100 == 0)
 	{
 		std::cout << "-------------------------------" << std::endl;
@@ -37,7 +36,6 @@ std::string Knn::getNeighbours(Data d, std::vector<Data> data_list, size_t k)
 			std::cout << top_k_indexes[i] << ": " << top_k_distances[i] << std::endl;
 		}
 	}
-	 */
 	size_t index = 0; 
 	std::map<std::string, int> top_k_class_map;
 	while (index < k && top_k_indexes[index] != -1)
