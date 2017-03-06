@@ -8,7 +8,7 @@
 class Knn
 {
 public:
-	std::string getNeighbours(Data d, std::vector<Data> data_list, size_t k);
+	std::string getNeighbours(ClassificationData d, std::vector<ClassificationData> data_list, size_t k);
 };
 
 #endif

@@ -7,7 +7,7 @@
 
 #include "ml_data.h"
 
-static double distance(const Data &d1, const Data &d2)
+static double distance(const ClassificationData &d1, const ClassificationData &d2)
 {
 	double total = 0;
 	for (size_t i = 0; i < d1.size; i++)
@@ -17,7 +17,7 @@ static double distance(const Data &d1, const Data &d2)
 	return sqrt(total);
 }
 
-static void normalize(std::vector<Data> data)
+static void normalize(std::vector<ClassificationData> data)
 {
 	double max = std::numeric_limits<double>::max();
 	double min = std::numeric_limits<double>::min();
@@ -41,7 +41,7 @@ static void normalize(std::vector<Data> data)
 	}
 }
 
-static void printData(const std::vector<Data> data)
+static void printData(const std::vector<ClassificationData> data)
 {
 	for (auto d : data)
 	{
@@ -51,6 +51,26 @@ static void printData(const std::vector<Data> data)
 		}
 		std::cout << std::endl;
 	}
+}
+
+static std::pair<std::vector<ClassificationData>, std::vector<ClassificationData>> split_data(
+	std::vector<ClassificationData> data, double percentage)
+{
+	std::vector<ClassificationData> training;
+	std::vector<ClassificationData> test;
+	size_t percentage_count = data.size() * percentage;
+	size_t index = 0;
+	while (index < percentage_count)
+	{
+		training.push_back(data[index]);
+		index++;
+	}
+	while (index < data.size())
+	{
+		test.push_back(data[index]);
+		index++;
+	}
+	return std::make_pair(training, test);
 }
 
 
