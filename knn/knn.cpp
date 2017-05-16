@@ -3,7 +3,7 @@
 #include <iostream>
 #include "../common/ml_data.util.h"
 
-std::string Knn::getNeighbours(ClassificationData d, std::vector<ClassificationData> data_list, size_t k)
+std::string Knn::getNeighbours(Item d, std::vector<Item> data_list, size_t k)
 {
 	double *top_k_distances = new double[k];
 	int *top_k_indexes = new int[k];

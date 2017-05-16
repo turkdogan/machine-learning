@@ -6,10 +6,10 @@
 #include <sstream>
 #include <fstream>
 
-static std::vector<ClassificationData> read_iris_data()
+static std::vector<Item> read_iris_data()
 {
 	const std::string path = "iris.data";
-	std::vector<ClassificationData> data;
+	std::vector<Item> data;
 	std::ifstream input(path);
 	std::string line;
 	while(std::getline(input, line))
@@ -24,7 +24,7 @@ static std::vector<ClassificationData> read_iris_data()
 		std::vector<std::string> seglist;
 
 		double *fields = new double[10];
-		ClassificationData d;
+		Item d;
 		d.fields = fields;
 		d.size = 4;
 		int index = 0;

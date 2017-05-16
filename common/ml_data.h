@@ -3,7 +3,7 @@
 
 #include <string>
 
-struct ClassificationData
+struct Item
 {
 	double *fields;
 	size_t size;

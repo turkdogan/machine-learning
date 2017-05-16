@@ -7,7 +7,7 @@
 #include "../common/ml_data.util.h"
 #include "../io/ddm/pima_indians_diabetes_reader.h"
 
-double run_knn(std::vector<ClassificationData> test, std::vector<ClassificationData> training, size_t k)
+double run_knn(std::vector<Item> test, std::vector<Item> training, size_t k)
 {
 	Knn knn;
 	size_t correct = 0; 
